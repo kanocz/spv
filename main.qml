@@ -36,7 +36,8 @@ Window {
                     image.fillMode = Image.Pad
                     image.width = image.sourceSize.width
                     image.height = image.sourceSize.height
-
+                    flickable.contentX = (image.width - window.width) / 2
+                    flickable.contentY = (image.height - window.height) / 2
                 } else {
                     image.fillMode = Image.PreserveAspectFit
                     image.width = window.width
