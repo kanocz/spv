@@ -47,6 +47,14 @@ Window {
                 }
             }
 
+            onSourceChanged: {
+                image.fillMode = Image.PreserveAspectFit
+                image.width = window.width
+                image.height = window.height
+                flickable.contentX = 0
+                flickable.contentY = 0
+            }
+
             focus: true
         }
     }
