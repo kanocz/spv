@@ -11,4 +11,6 @@ Usage:
 
   UP/DOWN keys to go to first/last photo
 
+  SPACE key to toggle fit to window / original size
+
   ESCAPE key to exit
