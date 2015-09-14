@@ -1,11 +1,22 @@
+#include <QDebug>
+#include <QFileInfo>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <QDebug>
 
 #include "eventrecv.h"
 
 int main(int argc, char *argv[])
 {
+  if (argc != 2) {
+    qWarning() << "Usage: " << argv[0] << " /path/to/jpeg/file.jpg";
+    exit(0);
+  }
+
+  if (!QFileInfo::exists(argv[1])) {
+    qWarning() << "File " << argv[1] << " doesn't exists";
+    exit(0);
+  }
+
   QGuiApplication app(argc, argv);
 
   QQmlApplicationEngine engine;
