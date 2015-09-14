@@ -19,20 +19,20 @@ eventRecv::eventRecv(QObject *title, QObject *source, QString image, QObject *pa
 
 void eventRecv::moveForward()
 {
-  m_currentIndex++;
-  if (m_filelist.length() <= m_currentIndex) {
-    m_currentIndex = 0;
+  if (m_filelist.length() <= (m_currentIndex + 1)) {
+    return;
   }
+  m_currentIndex++;
   m_currentFile = m_filelist.at(m_currentIndex);
   update();
 }
 
 void eventRecv::moveBackward()
 {
-  m_currentIndex--;
-  if (m_currentIndex < 0) {
-    m_currentIndex = m_filelist.length() - 1;
+  if (m_currentIndex == 0) {
+    return;
   }
+  m_currentIndex--;
   m_currentFile = m_filelist.at(m_currentIndex);
   update();
 }
