@@ -18,6 +18,8 @@ int main(int argc, char *argv[])
 
   QObject::connect(qmlWindow, SIGNAL(moveForward()), ev, SLOT(moveForward()));
   QObject::connect(qmlWindow, SIGNAL(moveBackward()), ev, SLOT(moveBackward()));
+  QObject::connect(qmlWindow, SIGNAL(moveHome()), ev, SLOT(moveHome()));
+  QObject::connect(qmlWindow, SIGNAL(moveEnd()), ev, SLOT(moveEnd()));
 
   return app.exec();
 }

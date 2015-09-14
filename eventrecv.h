@@ -16,6 +16,8 @@ class eventRecv : public QObject
   public slots:
     void moveForward();
     void moveBackward();
+    void moveHome();
+    void moveEnd();
 
   private:
     QObject *m_title, *m_source;

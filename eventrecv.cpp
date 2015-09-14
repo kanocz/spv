@@ -9,12 +9,11 @@ eventRecv::eventRecv(QObject *title, QObject *source, QString image, QObject *pa
 {
   QFileInfo fi(image);
   m_path = fi.absolutePath();
-  m_currentFile = fi.fileName();
-  update();
   QDir dir(m_path, "*.jpg", QDir::Name | QDir::IgnoreCase, QDir::Files);
   m_filelist = dir.entryList();
   qDebug() << m_filelist;
-  m_currentIndex = m_filelist.indexOf(m_currentFile);
+  m_currentIndex = m_filelist.indexOf(fi.fileName());
+  update();
 }
 
 void eventRecv::moveForward()
@@ -23,7 +22,6 @@ void eventRecv::moveForward()
     return;
   }
   m_currentIndex++;
-  m_currentFile = m_filelist.at(m_currentIndex);
   update();
 }
 
@@ -33,12 +31,24 @@ void eventRecv::moveBackward()
     return;
   }
   m_currentIndex--;
-  m_currentFile = m_filelist.at(m_currentIndex);
+  update();
+}
+
+void eventRecv::moveHome()
+{
+  m_currentIndex = 0;
+  update();
+}
+
+void eventRecv::moveEnd()
+{
+  m_currentIndex = m_filelist.length() - 1;
   update();
 }
 
 void eventRecv::update()
 {
+  m_currentFile = m_filelist.at(m_currentIndex);
   QString fname = m_path + '/' + m_currentFile;
   m_title->setProperty("title", fname);
   m_source->setProperty("source", QString("file://") + fname);

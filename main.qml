@@ -10,6 +10,8 @@ Window {
 
     signal moveForward()
     signal moveBackward()
+    signal moveHome()
+    signal moveEnd()
 
     Image {
         x: 0
@@ -18,6 +20,8 @@ Window {
         anchors.fill: parent
         Keys.onLeftPressed: window.moveBackward()
         Keys.onRightPressed: window.moveForward()
+        Keys.onUpPressed: window.moveHome()
+        Keys.onDownPressed: window.moveEnd()
         Keys.onEscapePressed: window.close()
         focus: true
     }
