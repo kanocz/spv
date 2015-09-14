@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
   engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
   QObject *qmlWindow = engine.rootObjects().first();
-  QObject *qmlImage = qmlWindow->children().first();
+  QObject *qmlImage = qmlWindow->findChild<QObject *>("image");
 
   eventRecv *ev = new eventRecv(qmlWindow, qmlImage, argv[1]);
 
