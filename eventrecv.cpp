@@ -10,14 +10,14 @@ eventRecv::eventRecv(QObject *title, QObject *source, QString image, QObject *pa
 {
   QFileInfo fi(image);
   m_path = fi.absolutePath();
-  QDir dir(m_path, "*.jpg", QDir::Name | QDir::IgnoreCase, QDir::Files);
+  QDir dir(m_path, "*.[jp][pn]g", QDir::Name | QDir::IgnoreCase, QDir::Files);
   m_filelist = dir.entryList();
   if (m_filelist.length() < 1) {
-    qWarning() << "No JPEG files in folder!";
+    qWarning() << "No JPEG or PNG files in folder!";
     QGuiApplication::quit();
     return;
   }
-  qDebug() << m_filelist;
+//  qDebug() << m_filelist;
   m_currentIndex = m_filelist.indexOf(fi.fileName());
   if (m_currentIndex < 0) {
     m_currentIndex = 0;
