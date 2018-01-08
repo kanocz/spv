@@ -24,6 +24,7 @@ Window {
             id: image
             objectName: "image"
             fillMode: Image.PreserveAspectFit
+            autoTransform: true
             width: window.width
             height: window.height
             Keys.onLeftPressed: window.moveBackward()
