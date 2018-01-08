@@ -9,7 +9,7 @@ class eventRecv : public QObject
 {
     Q_OBJECT
   public:
-    explicit eventRecv(QObject *title, QObject *source, QString image, QObject *parent = 0);
+    explicit eventRecv(QObject *title, QObject *source, QObject *progress, QString image, QObject *parent = 0);
 
   signals:
 
@@ -20,7 +20,7 @@ class eventRecv : public QObject
     void moveEnd();
 
   private:
-    QObject *m_title, *m_source;
+    QObject *m_title, *m_source, *m_progress;
     QString m_path;
     QString m_currentFile;
     QStringList m_filelist;

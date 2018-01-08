@@ -24,8 +24,9 @@ int main(int argc, char *argv[])
 
   QObject *qmlWindow = engine.rootObjects().first();
   QObject *qmlImage = qmlWindow->findChild<QObject *>("image");
+  QObject *qmlProgress = qmlWindow->findChild<QObject *>("loading");
 
-  eventRecv *ev = new eventRecv(qmlWindow, qmlImage, argv[1]);
+  eventRecv *ev = new eventRecv(qmlWindow, qmlImage, qmlProgress, argv[1]);
 
   QObject::connect(qmlWindow, SIGNAL(moveForward()), ev, SLOT(moveForward()));
   QObject::connect(qmlWindow, SIGNAL(moveBackward()), ev, SLOT(moveBackward()));

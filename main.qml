@@ -1,4 +1,4 @@
-import QtQuick 2.5
+import QtQuick 2.7
 import QtQuick.Window 2.2
 
 Window {
@@ -54,10 +54,22 @@ Window {
                 image.height = window.height
                 flickable.contentX = 0
                 flickable.contentY = 0
+                loading.visible = false
             }
 
             focus: true
         }
     }
+    Text {
+        id: loading
+        objectName: "loading"
+        text: "Loading..."
+        font.pointSize: 20
+        color: "white"
+        style: Text.Raised
+        styleColor: "black"
+        anchors.centerIn: parent
+    }
+
 }
 
