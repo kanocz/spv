@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>folderSelect.qml</file>
     </qresource>
 </RCC>

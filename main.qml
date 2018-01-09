@@ -1,10 +1,12 @@
 import QtQuick 2.7
 import QtQuick.Window 2.2
+import QtQuick.Dialogs 1.3
 
 Window {
     visible: true
     title: "Image viewer"
     id: window
+    objectName: "window"
     visibility: "Maximized"
     color: "#000000"
 
@@ -12,6 +14,7 @@ Window {
     signal moveBackward()
     signal moveHome()
     signal moveEnd()
+
     Flickable {
         anchors.fill: parent
         id: flickable
@@ -57,6 +60,11 @@ Window {
                 loading.visible = false
             }
 
+            function selectFolder() {
+                fileDialog.open()
+                return fileDialog.folder
+            }
+
             focus: true
         }
     }
@@ -69,7 +77,7 @@ Window {
         style: Text.Raised
         styleColor: "black"
         anchors.centerIn: parent
+        visible: false
     }
-
 }
 

@@ -2,32 +2,33 @@
 #define EVENTRECV_H
 
 #include <QObject>
+#include <QQmlApplicationEngine>
 #include <QStringList>
 
+class eventRecv : public QObject {
+  Q_OBJECT
+public:
+  explicit eventRecv(QQmlApplicationEngine *engine, QString path);
 
-class eventRecv : public QObject
-{
-    Q_OBJECT
-  public:
-    explicit eventRecv(QObject *title, QObject *source, QObject *progress, QString image, QObject *parent = 0);
+signals:
 
-  signals:
+public slots:
+  void moveForward();
+  void moveBackward();
+  void moveHome();
+  void moveEnd();
+  void folderSelected(QString folder);
 
-  public slots:
-    void moveForward();
-    void moveBackward();
-    void moveHome();
-    void moveEnd();
+private:
+  QQmlApplicationEngine *m_engine = nullptr;
+  QObject *m_title = nullptr, *m_source = nullptr, *m_progress = nullptr;
+  QString m_path;
+  QString m_currentFile;
+  QStringList m_filelist;
+  int m_currentIndex;
 
-  private:
-    QObject *m_title, *m_source, *m_progress;
-    QString m_path;
-    QString m_currentFile;
-    QStringList m_filelist;
-    int m_currentIndex;
-
-    void update();
-
+  void update();
+  void setPath(QString path);
 };
 
 #endif // EVENTRECV_H
