@@ -1,3 +1,4 @@
+#include <QDateTime>
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
@@ -52,7 +53,13 @@ void eventRecv::update() {
   QString fname = m_path + '/' + m_currentFile;
   m_progress->setProperty("visible", true);
   QGuiApplication::processEvents();
-  m_title->setProperty("title", QString("%1 (%2/%3)").arg(fname).arg(m_currentIndex+1).arg(m_filelist.length()));
+  QFileInfo info(fname);
+  m_title->setProperty(
+      "title", QString("%1 (%2/%3) %4")
+                   .arg(fname)
+                   .arg(m_currentIndex + 1)
+                   .arg(m_filelist.length())
+                   .arg(info.created().toString("yyyy-MM-dd hh:mm:ss")));
   m_source->setProperty("source", QString("file://") + fname);
 }
 
