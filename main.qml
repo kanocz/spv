@@ -14,6 +14,7 @@ Window {
     signal moveBackward()
     signal moveHome()
     signal moveEnd()
+    signal imgSize(size s)
 
     Flickable {
         anchors.fill: parent
@@ -50,6 +51,8 @@ Window {
                     flickable.contentY = 0
                 }
             }
+
+            onStatusChanged: if (image.status == Image.Ready) window.imgSize(image.sourceSize)
 
             onSourceChanged: {
                 image.fillMode = Image.PreserveAspectFit

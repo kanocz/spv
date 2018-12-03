@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QQmlApplicationEngine>
+#include <QSizeF>
 #include <QStringList>
 
 class eventRecv : public QObject {
@@ -17,6 +18,7 @@ public slots:
   void moveBackward();
   void moveHome();
   void moveEnd();
+  void imgSize(QSizeF size);
   void folderSelected(QString folder);
 
 private:

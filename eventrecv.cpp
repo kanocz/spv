@@ -40,6 +40,19 @@ void eventRecv::moveEnd() {
   update();
 }
 
+void eventRecv::imgSize(QSizeF size) {
+  QString fname = m_path + '/' + m_currentFile;
+  QFileInfo info(fname);
+  m_title->setProperty("title",
+                       QString("%1 (%2/%3) %4 (%5x%6)")
+                           .arg(fname)
+                           .arg(m_currentIndex + 1)
+                           .arg(m_filelist.length())
+                           .arg(info.created().toString("yyyy-MM-dd hh:mm:ss"))
+                           .arg(size.width())
+                           .arg(size.height()));
+}
+
 void eventRecv::folderSelected(QString folder) {
   if (folder.startsWith("file:///")) {
     folder = folder.remove(0, 7);
@@ -108,6 +121,8 @@ void eventRecv::setPath(QString path) {
                      SLOT(moveBackward()));
     QObject::connect(m_title, SIGNAL(moveHome()), this, SLOT(moveHome()));
     QObject::connect(m_title, SIGNAL(moveEnd()), this, SLOT(moveEnd()));
+    QObject::connect(m_title, SIGNAL(imgSize(QSizeF)), this,
+                     SLOT(imgSize(QSizeF)));
   }
   update();
 }
